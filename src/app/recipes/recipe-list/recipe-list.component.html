@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-ex-12">
+        <button class="btn btn-success">New Recipe</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <app-recipe-item 
+        *ngFor = "let recipe of recipes"
+        [recipeItem] = "recipe"
+        (recipeItemEvent) = "onRecipeItemClicked(recipe)"></app-recipe-item>
+    </div>
+</div>
+
+<!-- <p class="list-group-item-text">{{ recipes[0].description }}</p> -->
+<!-- this wont work, you must use recipe.name when you are using the ngFor directive
+since we have recipe as our iterator variable -->
