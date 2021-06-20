@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, Output, ViewChild, EventEmitter } from '@angular/core'; //imports the component decorator 
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'; //imports the component decorator 
+import { ShoppingListService } from 'src/app/services/shopping-list.service';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 
 
@@ -9,21 +10,28 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
 
 
 export class ShoppingListEditComponent implements OnInit{
-    @ViewChild('nameInput') nameInput: ElementRef;
-    @ViewChild('amountInput') amountInput: ElementRef;
+
     @Output() newItemAdded = new EventEmitter<Ingredient>();
 
+    ingredientName: string = '';
+    ingredientAmount: number = null;
 
+    constructor(private readonly shoppingListService: ShoppingListService){}
+    
     ngOnInit(){
-        
+        this.shoppingListService.ingredientAdded.subscribe(
+            () => {
+              this.ingredientName = '';
+              this.ingredientAmount = null;
+            })
     }
 
-    onAddRecipe(){
-        
-        const ingName: string = this.nameInput.nativeElement.value;
-        const ingAmount: number = this.amountInput.nativeElement.value;
-        const newIngredient = new Ingredient(ingName, ingAmount);
-        this.newItemAdded.emit(newIngredient);
-
+    //send new ingredient to shopping list service
+    onAddIngredient(){
+        this.shoppingListService.addIngredient(new Ingredient(this.ingredientName, this.ingredientAmount ));
+    }
+    
+    onClearIngredients(){
+        this.shoppingListService.clearIngredientArray();
     }
 }
