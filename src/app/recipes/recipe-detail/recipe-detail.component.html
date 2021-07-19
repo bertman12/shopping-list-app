@@ -17,9 +17,10 @@
             Manage Recipe <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a href="#" class = "dropdown-item">Add Ingredients to Shoppint List</a></li>
-                <li><a href="#" class = "dropdown-item">Edit Recipe</a></li>
-                <li><a href="#" class = "dropdown-item">Delete Recipe</a></li>
+                <li><a class = "dropdown-item"
+                       style="cursor: pointer;"(click) = "onAddIngredientsToShopList()">Add Ingredients to Shopping List</a></li>
+                <li><a style="cursor: pointer;" class = "dropdown-item" (click)="onEditRecipe()">Edit Recipe</a></li>
+                <li><a style="cursor: pointer;" class = "dropdown-item">Delete Recipe</a></li>
             </ul>
         </div>
     </div>
@@ -27,17 +28,24 @@
 <!-- get info from recipe model -->
 <div class="row">
     <div class="col-xs-12">
-        {{ recipe.description }}
+        <strong>Description: </strong>{{ recipe.description }}
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        Ingredients
+        <ul class="list-group">
+            <li class="list-group-item"
+            *ngFor = 'let ingredient of recipe.ingredients'>
+                <strong>{{ ingredient.amount }} </strong>  <em>{{ ingredient.name }}</em>
+            </li>
+        </ul>
     </div>
 </div>
 
+
+<!-- 
 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a href="#" class = "dropdown-item">Add Ingredients to Shoppint List</a></li>
+    <li><a href="#" class = "dropdown-item">Add Ingredients to Shopping List</a></li>
     <li><a href="#" class = "dropdown-item">Edit Recipe</a></li>
     <li><a href="#" class = "dropdown-item">Delete Recipe</a></li>
-</ul>
+</ul> -->

@@ -24,6 +24,7 @@
                 class="btn btn-success" 
                 type = "button"
                 (click) = "onAddIngredient()"
+                [disabled] = '!ingredientName || !ingredientAmount'
                 >Add</button>
                 <button class="btn btn-danger" type = "button">Delete</button>
                 <button class="btn btn-primary" type = "button"

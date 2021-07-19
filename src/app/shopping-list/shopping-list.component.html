@@ -8,7 +8,7 @@
             style = "cursor: pointer"
             *ngFor = "let ingredient of localIngredientsArr"
             >
-            {{ ingredient.name }} {{ ingredient.amount }}
+            <em>{{ ingredient.name }}</em>, (<strong>{{ ingredient.amount }}</strong>)
             </a>
         </ul>
     </div>

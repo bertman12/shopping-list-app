@@ -42,6 +42,18 @@ export class ShoppingListService {
     this.ingredients = [];
     this.ingredientsCleared.emit();
   }
+  //pass the ingredients tot he addIngredient function whihc will then emit an event already made to update the ingredients array in
+  //the shopping list component
 
+  addIngredientsToShopList(ingredients: Ingredient[]){
+    //The only downside of calling addingredient() repeatedly is that it will emit alot of events
+    // for(let i = 0; i < ingredients.length; i++){
+    //   this.addIngredient(ingredients[i]);
+    // }
+
+    //use of spread operator and only one event emitted
+    this.ingredients.push(...ingredients);
+    this.ingredientAdded.emit(this.getIngredients());
+  }
 
 }
